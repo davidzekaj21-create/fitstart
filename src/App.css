@@ -1,0 +1,806 @@
+:root{
+  --yellow:#ffd400;
+  --text:#f2f2f2;
+}
+
+*{ box-sizing:border-box; font-weight:700; }
+body{ margin:0; font-family: Arial, Helvetica, sans-serif; }
+.appShell{ min-height:100vh; }
+
+/* Shared pages background */
+.homePage,
+.storyPage{
+  min-height:100vh;
+  width:100vw;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+
+  background-image:
+    linear-gradient(rgba(0,0,0,0.76), rgba(0,0,0,0.76)),
+    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=2400&q=80");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  color:var(--text);
+}
+
+/* Top bar */
+.topBar{
+  width:100%;
+  background:rgba(255,212,0,0.16);
+  border-bottom:2px solid rgba(255,212,0,0.65);
+  backdrop-filter: blur(8px);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+
+  padding:14px 26px;
+}
+
+/* Logo */
+.logoBtn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  padding:6px 8px;
+  border-radius:12px;
+}
+.logoBtn:hover{ background:rgba(255,212,0,0.10); }
+
+.logoMark{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:2px solid rgba(255,212,0,0.95);
+  background:rgba(0,0,0,0.35);
+  position:relative;
+  box-shadow: 0 0 18px rgba(255,212,0,0.14);
+}
+.logoMark::after{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border-radius:7px;
+  background:rgba(255,212,0,0.14);
+  border:1px solid rgba(255,212,0,0.35);
+}
+.logoText{
+  color:var(--yellow);
+  letter-spacing:0.6px;
+  font-size:18px;
+}
+
+/* Nav */
+.navGrid{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  align-items:center;
+}
+.navBtn{
+  background:rgba(0,0,0,0.48);
+  border:1px solid rgba(255,255,255,0.16);
+  color:rgba(255,255,255,0.90);
+  padding:10px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.18s ease;
+  font-size:13px;
+}
+.navBtn:hover{
+  background:var(--yellow);
+  color:#000;
+  border-color: rgba(255,212,0,0.95);
+}
+.navBtn.active{
+  background:rgba(255,212,0,0.25);
+  border-color: rgba(255,212,0,0.75);
+}
+
+/* Bottom bar */
+.bottomBar{
+  width:100%;
+  background:rgba(255,212,0,0.16);
+  border-top:2px solid rgba(255,212,0,0.65);
+  backdrop-filter: blur(8px);
+
+  padding:14px 26px;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+.credit{
+  font-size:12px;
+  color:rgba(255,255,255,0.90);
+  letter-spacing:0.25px;
+}
+
+/* Home hero */
+.hero{
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:24px;
+}
+.heroInner{ display:grid; place-items:center; }
+
+.heroTitle{
+  margin:0;
+  font-size:78px;
+  line-height:1;
+  color:var(--yellow);
+  text-shadow: 0 10px 40px rgba(0,0,0,0.55);
+}
+.heroQuote{
+  margin:10px 0 0 0;
+  max-width:820px;
+  font-size:17px;
+  line-height:1.55;
+  color:rgba(255,255,255,0.92);
+  letter-spacing:0.25px;
+
+  padding:10px 16px;
+  border-radius:14px;
+  background: rgba(0,0,0,0.28);
+  border:1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(6px);
+}
+.heroBtn{
+  margin-top:18px;
+  padding:14px 24px;
+  font-size:16px;
+  border-radius:14px;
+  cursor:pointer;
+
+  background:transparent;
+  color:var(--text);
+  border:2px solid rgba(255,212,0,0.95);
+  transition:0.2s ease;
+}
+.heroBtn:hover{
+  background:var(--yellow);
+  color:#000;
+}
+
+/* Our Story layout */
+.storyMain{
+  display:grid;
+  place-items:center;
+  padding:28px 18px;
+}
+.storyCard{
+  width:min(1120px, 95vw);
+  border-radius:18px;
+  border:1px solid rgba(255,212,0,0.25);
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  padding:18px;
+
+  display:grid;
+  grid-template-columns: 360px 1fr;
+  gap:18px;
+}
+.storyLeft{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.founderImg{
+  width:100%;
+  height:440px;
+  object-fit:cover;
+  border-radius:16px;
+  border:1px solid rgba(255,212,0,0.35);
+  background: rgba(0,0,0,0.25);
+}
+.founderTag{
+  font-size:13px;
+  color: rgba(255,255,255,0.86);
+  padding:10px 12px;
+  border-radius:14px;
+  background: rgba(0,0,0,0.28);
+  border:1px solid rgba(255,255,255,0.10);
+}
+.storyRight{ padding:4px 6px; }
+
+.storyTitle{
+  margin:0 0 10px 0;
+  color:var(--yellow);
+  font-size:34px;
+}
+.storyP{
+  margin:0 0 10px 0;
+  font-size:14.5px;
+  line-height:1.7;
+  color: rgba(255,255,255,0.92);
+}
+.storyQuestion{
+  margin-top:10px;
+  font-size:14.8px;
+  color: rgba(255,255,255,0.92);
+}
+.hl{ color:var(--yellow); }
+
+/* Boxes */
+.boxGrid{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:10px;
+}
+.boxBtn{
+  padding:14px 14px;
+  border-radius:14px;
+  cursor:pointer;
+  text-align:left;
+
+  background: rgba(0,0,0,0.45);
+  border:1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.88);
+  transition:0.18s ease;
+}
+.boxBtn:hover{
+  background:var(--yellow);
+  color:#000;
+  border-color: rgba(255,212,0,0.95);
+}
+
+/* WHAT IS FITNESS PAGE */
+.fitnessMain{
+  display: grid;
+  place-items: center;
+  padding: 28px 18px;
+}
+
+.fitnessCard{
+  width: min(980px, 95vw);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 212, 0, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+
+.fitnessTitle{
+  margin: 0 0 10px 0;
+  color: var(--yellow);
+  font-size: 34px;
+}
+
+.fitnessP{
+  margin: 0 0 12px 0;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.fitnessSection{
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.26);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.fitnessH3{
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  color: rgba(255, 212, 0, 0.95);
+}
+
+/* WORKOUTS PAGE */
+.workoutsMain{
+  display:grid;
+  place-items:center;
+  padding: 28px 18px;
+}
+.workoutsCard{
+  width: min(1120px, 95vw);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 212, 0, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+.workoutsTitle{
+  margin: 0;
+  color: var(--yellow);
+  font-size: 34px;
+}
+.workoutsSub{
+  margin: 8px 0 14px 0;
+  font-size: 14.5px;
+  color: rgba(255,255,255,0.90);
+}
+
+.goalGrid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:10px;
+  margin:10px 0 16px 0;
+}
+.goalCard{
+  text-align:left;
+  padding:14px 14px;
+  border-radius:16px;
+  cursor:pointer;
+
+  background: rgba(0,0,0,0.45);
+  border:1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.92);
+  transition:0.18s ease;
+}
+.goalCard:hover{
+  background: rgba(255, 212, 0, 0.14);
+  border-color: rgba(255, 212, 0, 0.45);
+}
+.goalCard.selected{
+  background: rgba(255, 212, 0, 0.20);
+  border-color: rgba(255, 212, 0, 0.70);
+}
+.goalName{
+  font-size:16px;
+  color: var(--yellow);
+  margin-bottom:4px;
+}
+.goalHint{
+  font-size:13px;
+  color: rgba(255,255,255,0.86);
+}
+
+.workoutTop{
+  display:flex;
+  gap:12px;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+
+  padding:12px 12px;
+  border-radius:14px;
+  background: rgba(0,0,0,0.26);
+  border:1px solid rgba(255,255,255,0.10);
+}
+.workoutTitle{
+  margin:0;
+  font-size:18px;
+  color: rgba(255,255,255,0.95);
+}
+.workoutSubtitle{
+  margin:6px 0 0 0;
+  font-size:13.5px;
+  line-height:1.6;
+  color: rgba(255,255,255,0.88);
+  max-width:760px;
+}
+.tagRow{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.tag{
+  font-size:12px;
+  padding:8px 10px;
+  border-radius:999px;
+  background: rgba(255, 212, 0, 0.10);
+  border:1px solid rgba(255, 212, 0, 0.35);
+  color: rgba(255,255,255,0.92);
+}
+
+.planGrid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:10px;
+}
+.dayCard{
+  padding:14px 14px;
+  border-radius:16px;
+  background: rgba(0,0,0,0.26);
+  border:1px solid rgba(255,255,255,0.10);
+}
+.dayTitle{
+  color: var(--yellow);
+  margin-bottom:8px;
+  font-size:14px;
+}
+.dayList{
+  margin:0;
+  padding-left:18px;
+  color: rgba(255,255,255,0.92);
+  font-size:13.5px;
+  line-height:1.7;
+}
+
+.tipsBox{
+  margin-top:12px;
+  padding:14px 14px;
+  border-radius:16px;
+  background: rgba(255, 212, 0, 0.10);
+  border:1px solid rgba(255, 212, 0, 0.35);
+}
+.tipsTitle{
+  color: var(--yellow);
+  margin-bottom:8px;
+  font-size:14px;
+}
+.tipsList{
+  margin:0;
+  padding-left:18px;
+  font-size:13.5px;
+  line-height:1.7;
+  color: rgba(255,255,255,0.92);
+}
+
+/* Animations */
+@keyframes fadeDown{
+  from{ opacity:0; transform: translateY(-14px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(18px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+.fadeDown{ animation: fadeDown 0.6s ease both; }
+.fadeUp{ animation: fadeUp 0.75s ease both; animation-delay:0.08s; }
+.fadeUp2{ animation: fadeUp 0.7s ease both; animation-delay:0.18s; }
+
+/* Mobile */
+@media (max-width: 900px){
+  .heroTitle{ font-size:54px; }
+  .heroQuote{ font-size:15px; max-width:90%; }
+
+  .storyCard{ grid-template-columns: 1fr; }
+  .founderImg{ height:320px; }
+
+  .boxGrid{ grid-template-columns: 1fr; }
+
+  .goalGrid{ grid-template-columns: 1fr; }
+  .planGrid{ grid-template-columns: 1fr; }
+}
+/* ---------------------------- */
+/* TRACK PROGRESS (Option B)    */
+/* ---------------------------- */
+
+.trackMain{
+  display:grid;
+  place-items:center;
+  padding: 28px 18px;
+}
+
+.trackCard{
+  width: min(1120px, 95vw);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 212, 0, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+
+.trackHeader{
+  display:grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.trackTitle{
+  margin: 0;
+  color: var(--yellow);
+  font-size: 34px;
+}
+
+.trackSub{
+  margin: 0;
+  font-size: 14.5px;
+  color: rgba(255,255,255,0.90);
+  line-height: 1.6;
+}
+
+.summaryGrid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0 16px 0;
+}
+
+.summaryCard{
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.26);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.summaryLabel{
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 6px;
+}
+
+.summaryValue{
+  font-size: 18px;
+  color: rgba(255,255,255,0.95);
+}
+
+.trackGrid{
+  display:grid;
+  grid-template-columns: 360px 1fr;
+  gap: 12px;
+  align-items:start;
+  margin-top: 6px;
+}
+/* ---------------------------- */
+/* DIETS PAGE (weekly plan)     */
+/* ---------------------------- */
+
+.dietsMain{
+  display:grid;
+  place-items:center;
+  padding: 28px 18px;
+}
+
+.dietsCard{
+  width: min(1120px, 95vw);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 212, 0, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+
+.dietsTitle{
+  margin: 0;
+  color: var(--yellow);
+  font-size: 34px;
+}
+
+.dietsSub{
+  margin: 8px 0 14px 0;
+  font-size: 14.5px;
+  color: rgba(255,255,255,0.90);
+}
+
+.dietTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap: 12px;
+  flex-wrap:wrap;
+
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.26);
+  border: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 12px;
+}
+
+.dietTitle{
+  margin: 0;
+  font-size: 18px;
+  color: rgba(255,255,255,0.95);
+}
+
+.dietSubtitle{
+  margin: 6px 0 0 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.88);
+  max-width: 760px;
+}
+
+.dietNote{
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.86);
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 212, 0, 0.35);
+  background: rgba(255, 212, 0, 0.10);
+}
+
+.dietRules{
+  margin-top: 10px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(255, 212, 0, 0.10);
+  border: 1px solid rgba(255, 212, 0, 0.35);
+}
+
+.dietTableWrap{
+  margin-top: 12px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.26);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.dietTable{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.dietTable th,
+.dietTable td{
+  padding: 10px 10px;
+  text-align: left;
+  font-size: 13px;
+  color: rgba(255,255,255,0.90);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  vertical-align: top;
+}
+
+.dietTable th{
+  background: rgba(255,212,0,0.08);
+  color: rgba(255,255,255,0.92);
+}
+
+.dietFooterHint{
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.86);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px){
+  .dietTable{ min-width: 760px; }
+}
+.trackForm{
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.26);
+  border: 1px solid rgba(255,255,255,0.10);
+  display:grid;
+  gap: 10px;
+}
+
+.formTitle{
+  color: var(--yellow);
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.fieldLabel{
+  display:grid;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.88);
+}
+
+.fieldInput{
+  width: 100%;
+  border-radius: 12px;
+  padding: 10px 10px;
+
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.92);
+  outline: none;
+}
+
+.fieldInput:focus{
+  border-color: rgba(255,212,0,0.55);
+  box-shadow: 0 0 0 2px rgba(255,212,0,0.12);
+}
+
+.fieldTextarea{
+  resize: vertical;
+  min-height: 90px;
+}
+
+.trackAddBtn{
+  margin-top: 4px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+
+  background: transparent;
+  border: 2px solid rgba(255,212,0,0.95);
+  color: rgba(255,255,255,0.92);
+  transition: 0.18s ease;
+}
+
+.trackAddBtn:hover{
+  background: var(--yellow);
+  color: #000;
+}
+
+.trackDangerBtn{
+  padding: 12px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.88);
+  transition: 0.18s ease;
+}
+
+.trackDangerBtn:hover{
+  background: rgba(255, 212, 0, 0.14);
+  border-color: rgba(255, 212, 0, 0.45);
+}
+
+.trackTableWrap{
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.26);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.emptyState{
+  padding: 14px 12px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.22);
+  border: 1px dashed rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.86);
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+.tableScroll{
+  margin-top: 10px;
+  overflow: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.trackTable{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.trackTable th,
+.trackTable td{
+  padding: 10px 10px;
+  text-align: left;
+  font-size: 13px;
+  color: rgba(255,255,255,0.90);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.trackTable th{
+  color: rgba(255,255,255,0.92);
+  background: rgba(255,212,0,0.08);
+}
+
+.notesCell{
+  max-width: 360px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actionsCell{
+  width: 90px;
+}
+
+.rowDeleteBtn{
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.88);
+  transition: 0.18s ease;
+}
+
+.rowDeleteBtn:hover{
+  background: var(--yellow);
+  color: #000;
+  border-color: rgba(255,212,0,0.95);
+}
+
+@media (max-width: 900px){
+  .summaryGrid{ grid-template-columns: 1fr; }
+  .trackGrid{ grid-template-columns: 1fr; }
+  .trackTable{ min-width: 640px; }
+}
